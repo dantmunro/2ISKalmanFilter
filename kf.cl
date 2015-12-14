@@ -16,7 +16,7 @@
 ;;
 ;; -=End Copyright Notice=-
 
-
+;; All packages intended for use with Allegro Common Lisp
 
 ;;; Kalman Filter (Latent Linear Dynamical System/LDS) Forward/Backward and Training Algorithms
 ;;; Includes some demos and several auxiliary matrix/statistical functions
