@@ -472,7 +472,7 @@
 			(smooth filter)
 			(let ((vv (%*% (B filter) (concat-columns-to-mat (g filter)))))
 				(with-open-file (str 
-								"/plottable_data/original-lisp-data.csv"
+								"/original-lisp-data.csv"
 								 :direction :output
 								 :if-exists :supersede
 								 :if-does-not-exist :create)
@@ -485,7 +485,7 @@
 					)
 				)
 				(with-open-file (str 
-								"/plottable_data/reconstructed-lisp-data.csv"
+								"/reconstructed-lisp-data.csv"
 								 :direction :output
 								 :if-exists :supersede
 								 :if-does-not-exist :create)
@@ -541,7 +541,7 @@
 							for mat-name in (list "dum1" "dum2" "mean_post" "cov_post" "dum3" "v" "h")
 						do (output-to-csv mat mat-name
 							:out-file 
-								(format nil "/plottable_data/~a.csv" mat-name))
+								(format nil "/~a.csv" mat-name))
 					)
 				)
 			)
@@ -562,7 +562,7 @@
 					:maxits 100
 					:filter (make-instance 'kalman-filter :H H :v v :CovV (ones 2 1))))
 		)
-		(let* ((filter (learn v H :opt-filter opts :debug-p t :persist-p t)))
+		(let* ((filter (learn v H :opt-filter opts :debug-p nil :persist-p t)))
 			(smooth filter)
 			(setf filter (predict filter num-new-preds))
 			(with-accessors ((v v) (A A) (B B) (meanH meanH) (meanV meanV) (meanP meanP) (CovV CovV)
@@ -573,7 +573,7 @@
 						for filename in (list "original-lisp-data1" "reconstructed-lisp-data1")
 						do
 						(with-open-file (str (format nil 
-												"/plottable_data/~a.csv"
+												"/~a.csv"
 												filename)
 										 :direction :output
 										 :if-exists :supersede
@@ -597,6 +597,6 @@
 	)
 )
 ;;;UNCOMMENT TO RUN DEMOS
-;(demo-LDS-prediction 30 5)
+(demo-LDS-prediction 30 5)
 ;(demo-LDS-learn)
 ;(demo-LDS-tracking)

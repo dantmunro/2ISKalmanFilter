@@ -3,18 +3,21 @@
 (in-package :cg-user)
 
 (define-project :name :kf-portfolio
-  :modules (list (make-instance 'module :name "kf")
+  :modules (list (make-instance 'module :name "kf-packagedef")
                  (make-instance 'module :name "kf-additional-matrix-functions")
                  (make-instance 'module :name "kf-matrix-library")
                  (make-instance 'module :name "kf-persistence-functions")
-                 (make-instance 'module :name "kf-packagedef"))
+				 (make-instance 'module :name "kf")
+                 ;(make-instance 'form-module :name "kf-form" :finder-function 'kf-form
+                 ;               :has-pixmap-file nil)
+			)
   :projects nil
   :libraries nil
   :editable-files nil
   :distributed-files nil
   :internally-loaded-files nil
   :project-package-name :common-graphics-user
-  :main-form nil
+  :main-form 'kf-form
   :compilation-unit t
   :concatenate-project-fasls nil
   :verbose nil

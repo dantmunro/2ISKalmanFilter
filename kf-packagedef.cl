@@ -32,4 +32,6 @@
 (defpackage :kf
   (:use :cl :excl :db.allegrocache)
   (:export))
+  
+(setf (readtable-case *readtable*) :invert)
    

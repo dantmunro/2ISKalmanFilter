@@ -24,14 +24,14 @@
 ; Only intended for 2d-arrays and vectors of 2d arrays. Directs output to output-to-csv-mat
 ; or output-to-csv-vec
 (defun output-to-csv (item item-name
-						&key (out-file "/plottable_data/debug-lisp.csv"))
+						&key (out-file "/debug-lisp.csv"))
 	(if (vectorp item) (output-to-csv-vec item item-name :out-file out-file) 
 						(output-to-csv-mat item item-name :out-file out-file))
 )
 
 ; Outputs a 2D array to a CSV with a header (note that it is appended, not supeseded)
 (defun output-to-csv-mat (mat mat-name 
-							&key (out-file "/plottable_data/debug-lisp.csv"))
+							&key (out-file "/debug-lisp.csv"))
 	(with-open-file (str out-file
 					 :direction :output
 					 :if-exists :append
@@ -43,7 +43,7 @@
 
 ; Outputs a vector of 2D arrays to a CSV with a header (note that it is appended, not supeseded)
 (defun output-to-csv-vec (vec vec-name
-							&key (out-file "/plottable_data/debug-lisp.csv"))
+							&key (out-file "/debug-lisp.csv"))
 	(with-open-file (str out-file
 					 :direction :output
 					 :if-exists :append

@@ -246,6 +246,20 @@
                          (setf (aref inverse r c) (aref v (+ c num-cols)))))
              inverse)))))
 			 
+(defun uniform-random-variable (&key (uniform-input (random 1.0))
+                                     (min 0) (max 1.0) (delta (- max min)))
+  (+ min (* uniform-input delta)))
+ 
+(defun normal-random-variable (&optional (mu 0) (sigma 1))
+  ;box-muller transform
+  (let ((U1 (random 1.0))
+        (U2 (random 1.0)))
+    (if (zerop U1) (normal-random-variable) ;a remote possibility
+      (+ mu
+         (* sigma
+            (sqrt (* -2 (log U1)))
+            (cos (* 2 pi U2))))))) ;cosine is allegedly expensive.
+			 
 (defun identity-matrix (n)
   (let ((x (make-array (list n n) :initial-element 0)))
     (loop for i from 0 to (- n 1)

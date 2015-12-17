@@ -1,0 +1,52 @@
+;;; Define :kf-form
+ 
+(in-package :common-graphics-user)
+
+;; The finder-function, which returns the window if it already
+;; exists, and otherwise creates and returns it.
+;; Call this function if you need only one copy of this window,
+;; and that window is a non-owned top-level window.
+(defun kf-form () (find-or-make-application-window :kf-form 'make-kf-form))
+ 
+;; The maker-function, which always creates a new window.
+;; Call this function if you need more than one copy,
+;; or the single copy should have a parent or owner window.
+;; (Pass :owner to this function; :parent is for compatibility.)
+(defun make-kf-form
+    (&key parent (owner (or parent (screen *system*))) exterior
+     (interior (make-box 372 94 1224 429)) (name :kf-form) (title "Kf Form")
+     (border :frame) (child-p nil) form-p)
+  (let ((owner
+         (make-window name :owner owner
+           :class 'form
+           :exterior exterior
+           :interior interior
+           :border border
+           :child-p child-p
+           :close-button t
+           :font (make-font-ex :swiss "Arial / ANSI" 11)
+           :form-state :normal
+           :maximize-button t
+           :minimize-button t
+           :name :kf-form
+           :pop-up nil
+           :resizable t
+           :scrollbars nil
+           :state :normal
+           :system-menu t
+           :title title
+           :title-bar t
+           :dialog-items (make-kf-form-widgets)
+           :form-p form-p
+           :form-package-name nil)))
+    owner))
+
+(defun make-kf-form-widgets ()
+  (list (make-instance 'static-text :font (make-font-ex nil "Tahoma / Default" 11)
+                       :height 158 :justification :center :left 4 :name :kf-output :top
+                       165 :value "STATIC-TEXT" :width 798)
+        (make-instance 'editable-text :font (make-font-ex nil "Tahoma / Default" 11)
+                       :height 31 :left 4 :name :kf-input :top 16 :value "EDITABLE-TEXT"
+                       :width 798)
+        (make-instance 'button :font (make-font-ex nil "Tahoma / Default" 11) :height 58
+                       :left 4 :name :button5 :title "Button" :top 74 :width 798)))
