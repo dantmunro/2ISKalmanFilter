@@ -472,7 +472,7 @@
 			(smooth filter)
 			(let ((vv (%*% (B filter) (concat-columns-to-mat (g filter)))))
 				(with-open-file (str 
-								"/original-lisp-data.csv"
+								"original-lisp-data.csv"
 								 :direction :output
 								 :if-exists :supersede
 								 :if-does-not-exist :create)
@@ -485,7 +485,7 @@
 					)
 				)
 				(with-open-file (str 
-								"/reconstructed-lisp-data.csv"
+								"reconstructed-lisp-data.csv"
 								 :direction :output
 								 :if-exists :supersede
 								 :if-does-not-exist :create)
@@ -541,7 +541,7 @@
 							for mat-name in (list "dum1" "dum2" "mean_post" "cov_post" "dum3" "v" "h")
 						do (output-to-csv mat mat-name
 							:out-file 
-								(format nil "/~a.csv" mat-name))
+								(format nil "~a.csv" mat-name))
 					)
 				)
 			)
@@ -573,7 +573,7 @@
 						for filename in (list "original-lisp-data1" "reconstructed-lisp-data1")
 						do
 						(with-open-file (str (format nil 
-												"/~a.csv"
+												"~a.csv"
 												filename)
 										 :direction :output
 										 :if-exists :supersede
