@@ -570,7 +570,7 @@
 					  filter
 				(let ((vv (%*% B (concat-columns-to-mat g))))
 					(loop for mat in (list v vv)
-						for filename in (list "original-lisp-data1" "reconstructed-lisp-data1")
+						for filename in (list "noisy-lisp-data" "filtered-lisp-data")
 						do
 						(with-open-file (str (format nil 
 												"~a.csv"
